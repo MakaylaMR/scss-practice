@@ -1,0 +1,79 @@
+$primaryColor: #E7525B;
+$secondaryColor: #F17881;
+$thirdColor: #F38BB2;
+$primaryBackground: #FFD7D7;
+$secondaryBackground: #FFB9CF;
+
+@mixin width($property){
+  width: $property
+}
+
+@mixin height($property){
+  height: $property
+}
+
+@mixin left($property){
+  left: $property
+}
+
+@mixin position($property){
+  position: $property
+}
+
+$borderRadius: 50px 50px 0 0;
+
+@mixin transform-origin($property) {
+  transform-origin: $property;
+}
+
+@mixin transform($property){
+  transform: $property
+}
+
+ul {
+  display:grid;
+
+  grid-template-columns: repeat(auto-fit, minmax(100px,1fr));
+
+  list-style: none;
+
+  li &:hover {
+    background-color: $primaryBackground;
+  }
+}
+
+.heart {
+  @include position(relative);
+
+  @include width(100px);
+  @include height(90px); 
+
+  &:before,
+  &:after {
+    @include position(absolute);
+    content: "";
+
+    @include left(50px);
+    top: 0;
+
+    @include width(50px);
+    @include height(80px);
+
+    background: $primaryColor;
+
+    border-radius: $borderRadius;
+
+    @include transform(rotate(-45deg));
+    @include transform-origin(0 100%);
+  }
+  &:after {
+    @include left(0);
+    
+    @include transform(rotate(45deg));
+    @include transform-origin(100% 100%);
+  }
+  &:hover {
+    background: $primaryBackground;
+  }
+}
+
